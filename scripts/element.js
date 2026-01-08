@@ -1,4 +1,5 @@
 import fusions from "./fusions.js";
+import Storable from "./store.js";
 
 const ELEMENT_DIV_EVENTS = Object.freeze({
     ADDED : 0,
@@ -109,19 +110,16 @@ class ElementManager extends ElementSubject{
     }
 }
 
-class ElementHistory{
+class ElementHistory extends Storable{
     #seenElements;
     #elementUnlocksDiv;
     #elementUnlocksCounterDiv;
 
     constructor(elementUnlocksDiv, elementUnlocksCounterDiv){
+        super("elementHistory");
         this.#elementUnlocksDiv = elementUnlocksDiv;
         this.#elementUnlocksCounterDiv = elementUnlocksCounterDiv;
         this.#seenElements = new Set();
-    }
-
-    getNumElementsSeen(){
-        return this.#seenElements.size;
     }
 
     // Observer method
@@ -130,18 +128,26 @@ class ElementHistory{
             return;
         }
 
-       const elementName = element.getName();
-       if (this.#seenElements.has(elementName)){
+        const elementName = element.getName();
+        if (this.#seenElements.has(elementName)){
             return;
-       }
+        }
 
-       this.#seenElements.add(elementName);
-       // Need to clone element because passed reference
-       const elementDiv = element.getClone().getDiv();
-       this.#elementUnlocksDiv.appendChild(elementDiv);
-       elementDiv.addEventListener("click", () => {subject.addElement(element.getClone())});
-       
-       this.#elementUnlocksCounterDiv.innerHTML = `${this.getNumElementsSeen()}/${TOTAL_ELEMENTS}`;
+        this.#seenElements.add(elementName);
+
+        const elementDiv = element.getClone().getDiv();
+        elementDiv.addEventListener("click", () => {subject.addElement(element.getClone())});
+
+        this.#elementUnlocksDiv.appendChild(elementDiv);
+        this.#elementUnlocksCounterDiv.innerHTML = `${this.getNumElementsSeen()}/${TOTAL_ELEMENTS}`;
+    }
+
+    getNumElementsSeen(){
+        return this.#seenElements.size;
+    }
+
+    transformValue(){
+        return JSON.stringify([...this.#seenElements]);
     }
 }
 
