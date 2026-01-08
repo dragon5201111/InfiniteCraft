@@ -63,6 +63,7 @@ class ElementSubject{
     }
 
     subscribe(observer){
+        // Inform subject of subscription
         this.notify(null, ELEMENT_EVENTS.INITIALIZED);
         this.observers.push(observer);
     }
