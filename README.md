@@ -1,2 +1,2 @@
 # InfiniteCraft
-A clone-ish of the game Little Alchemy made in plain old javascript.
+A clone (kinda) of the game Little Alchemy made in plain old javascript.
