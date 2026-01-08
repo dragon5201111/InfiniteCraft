@@ -39,7 +39,7 @@
 
 .elementUnlocks{
     border: 1px solid black;
-    height: 45%;
+    height: 85%;
     overflow-y: auto;
     margin-bottom: 2px;
 }
@@ -58,4 +58,9 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.search{
+    background-image: url('/icons/searchglass.png');
+    background-repeat: no-repeat;
 }

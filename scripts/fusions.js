@@ -815,6 +815,7 @@ const fusions = [
     ["steak", "meat", "bbq"],
     ["steam", "water", "fire"],
     ["steam", "water", "energy"],
+    ["stick", "wood", "blade"],
     ["steamboat", "steam engine", "water"],
     ["steamboat", "steam engine", "boat"],
     ["steam", "engine boiler", "tool"],
