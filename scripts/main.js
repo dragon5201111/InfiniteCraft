@@ -12,21 +12,12 @@ const elementUnlocksCounterDiv = document.getElementsByClassName("elementUnlocks
 const elementContainerDiv = document.getElementsByClassName("elementContainer")[0];
 const elementClearDiv = document.getElementById("elementClear");
 
-const elementSearchInput = document.getElementsByClassName("elementSearch")[0];
-elementSearchInput.addEventListener("input", () => {
-    const inputText = elementSearchInput.value.toLowerCase();
-    const elementDivs = Array.from(elementUnlocksDiv.children);
-    elementDivs.forEach((elementDiv) => {
-        elementDiv.classList.remove("hidden");
-
-        if (!elementDiv.textContent.toLowerCase().includes(inputText)){
-            elementDiv.classList.add("hidden");
-        }
-    });
-});
-
 const elementHistory = new ElementHistory(elementUnlocksDiv, elementUnlocksCounterDiv);
 const elementFuser = new ElementFuser();
+
+const elementSearchInput = document.getElementsByClassName("elementSearch")[0];
+elementSearchInput.addEventListener("input", () => elementHistory.filterElementUnlocksDiv(elementSearchInput.value.toLowerCase()));
+
 
 const elementManager = new ElementManager(elementContainerDiv);
 

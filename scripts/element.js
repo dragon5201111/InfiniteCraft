@@ -172,6 +172,17 @@ class ElementHistory extends Storable{
     transformValue(){
         return JSON.stringify([...this.#seenElements]);
     }
+
+    filterElementUnlocksDiv(keyword){
+        const elementDivs = Array.from(this.#elementUnlocksDiv.children);
+        elementDivs.forEach((elementDiv) => {
+            elementDiv.classList.remove("hidden");
+
+            if (!elementDiv.textContent.toLowerCase().includes(keyword)){
+                elementDiv.classList.add("hidden");
+            }
+        });
+    }
 }
 
 class ElementFuser {
