@@ -229,5 +229,4 @@ class ElementFuser {
     }
 }
 
-
 export {ElementManager, Element, ElementHistory, ElementFuser};
