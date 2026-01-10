@@ -1,5 +1,4 @@
 import {ElementManager, Element, ElementHistory, ElementFuser} from "./element.js";
-import {DivFilter} from './util.js';
 
 const startingElements = [
     new Element("water"),
@@ -8,15 +7,13 @@ const startingElements = [
     new Element("air"),
 ]
 
-const divFilter = new DivFilter();
-
 const elementUnlocksDiv = document.getElementsByClassName("elementUnlocks")[0];
 const elementUnlocksCounterDiv = document.getElementsByClassName("elementUnlocksCounter")[0];
 const elementContainerDiv = document.getElementsByClassName("elementContainer")[0];
 const elementClearDiv = document.getElementById("elementClear");
 
 const elementSearchInput = document.getElementsByClassName("elementSearch")[0];
-divFilter.attach(elementSearchInput, ()=> {
+elementSearchInput.addEventListener("input", () => {
     const inputText = elementSearchInput.value.toLowerCase();
     const elementDivs = Array.from(elementUnlocksDiv.children);
     elementDivs.forEach((elementDiv) => {
